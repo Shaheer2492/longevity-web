@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg-primary: #FFFFFF;
+  --color-bg-alt: #F7F6F3;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: #AAAAAA;
+  --color-accent: #4CAF7D;
+  --color-accent-light: #E8F5EE;
+  --color-card-shadow: rgba(0, 0, 0, 0.08);
+  --color-navbar-glass: rgba(255, 255, 255, 0.72);
+  --color-hero-text: #FFFFFF;
+
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ---- Base Reset & Body ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: rgba(76, 175, 125, 0.2);
+  color: #1A1A1A;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F6F3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D4D4;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AAAAAA;
+}
+
+/* ---- Frosted Glass ---- */
+.frosted-glass {
+  background: var(--color-navbar-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ---- Card ---- */
+.card-elevated {
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px var(--color-card-shadow);
+}
+
+/* ---- Smooth image loading ---- */
+img {
+  image-rendering: auto;
+}
