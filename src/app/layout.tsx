@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Longevity — The Everything Health App",
+  title: "Longevity — Your Health, One Score",
   description:
-    "Personalized longevity science delivered to you. Register for early trial access.",
+    "A unified health platform that turns your wearables, workouts, and lab results into a single, living health score. See where you stand, what changed, and what to do next.",
   openGraph: {
-    title: "Longevity — The Everything Health App",
+    title: "Longevity — Your Health, One Score",
     description:
-      "Personalized longevity science delivered to you. Register for early trial access.",
+      "A unified health platform that turns your wearables, workouts, and lab results into a single, living health score. See where you stand, what changed, and what to do next.",
   },
 };
 

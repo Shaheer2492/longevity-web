@@ -1,22 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setScrolled(currentY > 60);
+      // Hide when scrolling down past 100px, show when scrolling up
+      if (currentY > 100 && currentY > lastScrollY.current) {
+        setHidden(true);
+      } else {
+        setHidden(false);
+      }
+      lastScrollY.current = currentY;
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: hidden ? -80 : 0, opacity: hidden ? 0 : 1 }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
       style={{
         position: "fixed",
         top: 0,
@@ -27,7 +39,6 @@ export default function Navbar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        transition: "background 0.3s ease, box-shadow 0.3s ease",
         background: scrolled ? "rgba(255,255,255,0.85)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",

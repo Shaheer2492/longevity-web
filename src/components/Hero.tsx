@@ -128,9 +128,9 @@ export default function Hero() {
             marginBottom: 20,
           }}
         >
-          The Everything
+          One Score.
           <br />
-          Health App
+          Complete Clarity.
         </h1>
 
         <p
@@ -140,13 +140,14 @@ export default function Hero() {
             color: "rgba(255,255,255,0.8)",
             lineHeight: 1.65,
             marginBottom: 36,
-            maxWidth: 520,
+            maxWidth: 560,
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
-          Track recovery, sleep, nutrition, and fitness — all in one
-          beautifully simple app backed by science.
+          Your wearables, workouts, and lab results — unified into a single,
+          living health score. See exactly where you stand, what changed
+          this week, and the one thing to focus on next.
         </p>
 
         {/* CTA */}
