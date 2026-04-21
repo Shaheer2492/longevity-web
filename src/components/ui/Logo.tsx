@@ -1,11 +1,28 @@
 type Props = {
   size?: number;
   fontSize?: number;
+  showWordmark?: boolean;
   className?: string;
   style?: React.CSSProperties;
 };
 
-export default function Logo({ size = 22, fontSize = 20, className, style }: Props) {
+/**
+ * Ember mark + "Longevity" wordmark.
+ *
+ * The gradient ID is intentionally static - the gradient is identical across
+ * every instance, so all Logos can share the single <radialGradient> defined
+ * here without collisions or SSR hydration mismatches.
+ */
+export default function Logo({
+  size = 22,
+  fontSize = 20,
+  showWordmark = true,
+  className,
+  style,
+}: Props) {
+  // SVG viewBox is 160 x 180; preserve aspect ratio when scaling.
+  const width = Math.round((size * 160) / 180);
+
   return (
     <span
       className={className}
@@ -18,46 +35,45 @@ export default function Logo({ size = 22, fontSize = 20, className, style }: Pro
       }}
     >
       <svg
-        width={size}
+        width={width}
         height={size}
-        viewBox="0 0 24 24"
+        viewBox="0 0 160 180"
         fill="none"
         aria-hidden="true"
+        style={{ flexShrink: 0 }}
       >
-        <circle
-          cx="12"
-          cy="12"
-          r="10.5"
-          stroke="currentColor"
-          strokeWidth="1.4"
+        <defs>
+          <radialGradient id="ember-grad" cx="50%" cy="65%" r="60%">
+            <stop offset="0%" stopColor="#e88956" />
+            <stop offset="60%" stopColor="#b25b2e" />
+            <stop offset="100%" stopColor="#6f3218" />
+          </radialGradient>
+        </defs>
+        <path
+          d="M 80 18 C 115 60, 138 100, 80 168 C 22 100, 45 60, 80 18 Z"
+          fill="url(#ember-grad)"
         />
         <path
-          d="M3.5 12.5h3l1.5-3 2.5 6 2-3.5 1.5 2h6"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d="M 80 40 C 100 70, 114 98, 80 148 C 46 98, 60 70, 80 40 Z"
+          fill="none"
+          stroke="#f6f1e4"
+          strokeWidth="0.8"
+          opacity="0.25"
         />
-        <circle cx="12" cy="12" r="1.6" fill="var(--accent)" />
+        <circle cx="80" cy="118" r="4" fill="#f6f1e4" opacity="0.85" />
       </svg>
-      <span
-        style={{
-          fontFamily: "var(--font-serif)",
-          fontSize,
-          letterSpacing: "-0.01em",
-          lineHeight: 1,
-        }}
-      >
-        Longevity
-        <em
+      {showWordmark && (
+        <span
           style={{
-            color: "var(--accent)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-serif)",
+            fontSize,
+            letterSpacing: "-0.01em",
+            lineHeight: 1,
           }}
         >
-          .
-        </em>
-      </span>
+          Longevity
+        </span>
+      )}
     </span>
   );
 }

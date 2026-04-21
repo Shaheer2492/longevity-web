@@ -1,5 +1,7 @@
 "use client";
 
+import Logo from "../ui/Logo";
+
 const COLS: { title: string; links: string[] }[] = [
   { title: "Product", links: ["Waitlist", "How it works", "The science", "Pricing"] },
   { title: "Company", links: ["About", "Careers", "Press kit", "Contact"] },
@@ -25,17 +27,8 @@ export default function Footer() {
           }}
         >
           <div style={{ maxWidth: 420 }}>
-            <div
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: 42,
-                letterSpacing: "-0.01em",
-                lineHeight: 1,
-                marginBottom: 20,
-              }}
-            >
-              Longevity
-              <em style={{ color: "var(--accent)" }}>.</em>
+            <div style={{ marginBottom: 20 }}>
+              <Logo size={38} fontSize={38} />
             </div>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, maxWidth: 380 }}>
               Health intelligence for people who already track their health,
